@@ -14,7 +14,7 @@ import { DiagnosticoSistema } from './components/DiagnosticoSistema';
 import { inicializarDemo } from './utils/api';
 import { Toaster } from './components/ui/sonner';
 import { tieneAccesoModulo, MODULOS } from './utils/roles';
-
+import { toast } from 'sonner';
 
 type Screen = 
   | 'login'
