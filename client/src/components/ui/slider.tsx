@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import * as SliderPrimitive from "@radix-ui/react-slider@1.2.3";
+import * as SliderPrimitive from "@radix-ui/react-slider";
 
 import { cn } from "./utils";
 
@@ -26,8 +26,8 @@ function Slider({
   return (
     <SliderPrimitive.Root
       data-slot="slider"
-      defaultValue={defaultValue}
-      value={value}
+      defaultValue={defaultValue ?? [min, max]}
+      value={value ?? defaultValue ?? [min, max]}
       min={min}
       max={max}
       className={cn(

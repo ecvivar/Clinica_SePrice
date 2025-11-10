@@ -97,7 +97,7 @@ export function AcreditacionTurno({ onBack }: AcreditacionTurnoProps) {
     }
   };
 
-  const fechaHoy = new Date().toISOString().split('T')[0];
+  const fechaHoy = new Date().toISOString().slice(0, 10);
   const turnosHoy = turnos.filter(t => t.fecha >= fechaHoy);
   
   const turnosFiltrados = search 

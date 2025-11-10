@@ -28,8 +28,8 @@ interface DiagnosticoSistemaProps {
 interface TestResult {
   nombre: string;
   estado: 'success' | 'error' | 'pending' | 'loading';
-  mensaje?: string;
-  detalles?: any;
+  mensaje?: string | undefined;
+  detalles?: any | undefined;
 }
 
 export function DiagnosticoSistema({ onBack }: DiagnosticoSistemaProps) {

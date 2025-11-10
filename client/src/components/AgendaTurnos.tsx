@@ -8,7 +8,7 @@ import { Badge } from './ui/badge';
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from './ui/dialog';
 import { Calendar, Plus, XCircle, CheckCircle, AlertCircle } from 'lucide-react';
 import { turnosApi, pacientesApi } from '../utils/api';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 interface AgendaTurnosProps {
   onBack: () => void;
@@ -88,7 +88,8 @@ export function AgendaTurnos({ onBack, onNuevoTurno, onAcreditar }: AgendaTurnos
     if (!turnoSeleccionado) return;
 
     try {
-      await turnosApi.delete(turnoSeleccionado.id);
+      // Use the provided cancelar method (id, motivo, usuario) instead of a non-existent delete
+      await turnosApi.cancelar(turnoSeleccionado.id, 'Cancelado desde la interfaz', 'Usuario');
       toast.success('Turno cancelado correctamente');
       setShowCancelarDialog(false);
       setTurnoSeleccionado(null);

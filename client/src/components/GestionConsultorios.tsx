@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, Di
 import { Badge } from './ui/badge';
 import { Building2, Plus, Trash2, ChevronDown, ChevronUp, Package, CheckCircle, XCircle, AlertCircle } from 'lucide-react';
 import { profesionalesApi, consultoriosApi } from '../utils/api';
-import { toast } from 'sonner@2.0.3';
+import { toast } from 'sonner';
 
 interface Consultorio {
   id: number;
@@ -26,6 +26,8 @@ interface Profesional {
   apellido: string;
   especialidad: string;
   insumos?: string[];
+  matricula?: string;
+  horarios?: string;
 }
 
 interface GestionConsultoriosProps {
@@ -243,9 +245,13 @@ export function GestionConsultorios({ onBack }: GestionConsultoriosProps) {
   };
 
   const desasignarProfesional = async (consultorioId: number) => {
-    const consultoriosActualizados = consultorios.map(c => 
-      c.id === consultorioId 
-        ? { ...c, profesionalId: undefined, profesionalNombre: undefined }
+    const consultoriosActualizados = consultorios.map(c =>
+      c.id === consultorioId
+        ? (() => {
+            // Omitir las propiedades profesionalId y profesionalNombre en lugar de asignarlas a undefined
+            const { profesionalId, profesionalNombre, ...rest } = c;
+            return rest as Consultorio;
+          })()
         : c
     );
     setConsultorios(consultoriosActualizados);
