@@ -1,51 +1,40 @@
 {
-  "name": "clinicaseprice",
+  "name": "clinica-seprise",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Sistema de gestión para Clínica SePrise con turnos, pacientes, profesionales e historias clínicas",
+  "type": "module",
+  "private": true,
   "scripts": {
-    "start": "npx vite",
-    "build": "vite build",
-    "dev": "vite",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx vite",
+    "build": "npx vite build",
+    "lint": "eslint . --ext .js, .jsx, .ts,.tsx",
+    "preview": "npx vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ecvivar/Clinica_SePrice.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/ecvivar/Clinica_SePrice/issues"
-  },
-  "homepage": "https://github.com/ecvivar/Clinica_SePrice#readme",
   "dependencies": {
     "class-variance-authority": "^0.7.1",
-    "cmdk": "^1.1.1",
-    "embla-carousel": "^8.6.0",
-    "embla-carousel-react": "^8.6.0",
-    "input-otp": "^1.4.2",
-    "lucide-react": "^0.553.0",
+    "clsx": "^2.1.1",
+    "lucide-react": "^0.522.0",
     "radix-ui": "^1.4.3",
-    "react": "^19.2.0",
-    "react-day-picker": "^9.11.1",
-    "react-dom": "^19.2.0",
-    "react-hook-form": "^7.66.0",
-    "react-resizable-panels": "^3.0.6",
-    "react-router-dom": "^7.9.5",
-    "recharts": "^3.4.1",
-    "sonner": "^2.0.7",
-    "tailwind-merge": "^3.4.0",
-    "vaul": "^1.1.2"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "sonner": "^2.0.3",
+    "tailwind-merge": "^3.4.0"
   },
   "devDependencies": {
-    "@types/react": "^19.2.2",
-    "@types/react-dom": "^19.2.2",
-    "@types/react-router-dom": "^5.3.3",
-    "@vitejs/plugin-react": "^5.1.0",
-    "typescript": "^5.9.3",
-    "vite": "^7.2.1"
+    "@types/node": "^20.11.18",
+    "@types/react": "^18.3.1",
+    "@types/react-dom": "^18.3.1",
+    "@typescript-eslint/eslint-plugin": "^5.54.0",
+    "@typescript-eslint/parser": "^5.54.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "latest",
+    "eslint": "^8.50.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.1",
+    "postcss": "latest",
+    "tailwindcss": "3.4.17",
+    "typescript": "^5.5.4",
+    "vite": "^5.2.0"
   }
 }

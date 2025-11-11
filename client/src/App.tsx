@@ -1,6 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom/client';
-
 import { useState, useEffect } from 'react';
 import { Login } from './components/Login';
 import { MenuPrincipal } from './components/MenuPrincipal';
@@ -16,7 +14,7 @@ import { Toaster } from './components/ui/sonner';
 import { tieneAccesoModulo, MODULOS } from './utils/roles';
 import { toast } from 'sonner';
 
-type Screen = 
+type Screen =
   | 'login'
   | 'menu'
   | 'turnos'
@@ -34,14 +32,12 @@ export default function App() {
   const [inicializado, setInicializado] = useState(false);
 
   useEffect(() => {
-    // Inicializar datos de demostración al cargar la app
     const inicializar = async () => {
       if (!inicializado) {
         try {
           await inicializarDemo();
           setInicializado(true);
         } catch (err: any) {
-          // Silenciar error de backend offline
           if (err?.message !== 'BACKEND_OFFLINE') {
             console.error('Error inicializando datos demo:', err);
           }
@@ -50,10 +46,7 @@ export default function App() {
       }
     };
     inicializar();
-  }, []);
-
-  const root = ReactDOM.createRoot(document.getElementById('root')!);
-  root.render(<App />);
+  }, [inicializado]);
 
   const handleLogin = (user: string, userRol: string) => {
     setUsuario(user);
@@ -67,9 +60,7 @@ export default function App() {
     setCurrentScreen('login');
   };
 
-  // Función para navegar con validación de permisos
   const navegarConPermiso = (screen: Screen) => {
-    // Mapeo de pantallas a módulos
     const screenToModule: Record<string, string> = {
       'turnos': MODULOS.TURNOS,
       'registro-turno': MODULOS.TURNOS,
@@ -80,7 +71,7 @@ export default function App() {
     };
 
     const modulo = screenToModule[screen];
-    
+
     if (modulo && !tieneAccesoModulo(rol, modulo as any)) {
       toast.error('Acceso denegado', {
         description: 'No tienes permisos para acceder a este módulo'
@@ -99,8 +90,8 @@ export default function App() {
     switch (currentScreen) {
       case 'menu':
         return (
-          <MenuPrincipal 
-            onNavigate={navegarConPermiso} 
+          <MenuPrincipal
+            onNavigate={navegarConPermiso}
             usuario={usuario}
             rol={rol}
             onLogout={handleLogout}
@@ -112,7 +103,7 @@ export default function App() {
           return null;
         }
         return (
-          <AgendaTurnos 
+          <AgendaTurnos
             onBack={() => setCurrentScreen('menu')}
             onNuevoTurno={() => navegarConPermiso('registro-turno')}
             onAcreditar={() => navegarConPermiso('acreditacion-turno')}
@@ -152,7 +143,7 @@ export default function App() {
         return <DiagnosticoSistema onBack={() => setCurrentScreen('menu')} />;
       default:
         return (
-          <MenuPrincipal 
+          <MenuPrincipal
             onNavigate={navegarConPermiso}
             usuario={usuario}
             rol={rol}
